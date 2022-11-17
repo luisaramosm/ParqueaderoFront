@@ -1,0 +1,93 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="gestionarPersona()">
+  <mat-card class="personas-card">
+    <mat-card-header>
+      <mat-card-title>Datos del propietario</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      
+      <!–- Numero de cedula -–>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Numero de cédula" formControlName="cedula">
+            <mat-error *ngIf="addressForm.controls['cedula'].hasError('required')">
+              El numero de cedula es  <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!–- inicia el grupo nombres y apellidos -–>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombres completos" formControlName="nombres">
+            <mat-error *ngIf="addressForm.controls['nombres'].hasError('required')">
+              Los nombres son  <strong>requeridos</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!–- Al frente de nombre apellidos -–>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellidos completos" formControlName="apellidos">
+            <mat-error *ngIf="addressForm.controls['apellidos'].hasError('required')">
+              Los apellidos son  <strong>requeridos</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!–- Fin del grupo nombres y apellidos -–>
+
+      <!–- inicia el grupo telefono y correo -–>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Numero de celular" formControlName="telefono">
+            <mat-error *ngIf="addressForm.controls['telefono'].hasError('required')">
+              El telefono es  <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!–- Al frente de telefono correo -–>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Correo electronico institucional" formControlName="correo">
+            <mat-error *ngIf="addressForm.controls['correo'].hasError('required')">
+              El correo electronico es  <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['correo'].hasError('email')">
+              Formato de correo  <strong>invalido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!–- Fin del grupo telefono y correo -–>
+      
+      <!–- inicia tipo de vinculación campo especial de seleccion -–>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Tipo de vinculación" formControlName="tipoVinculacion">
+              <mat-option *ngFor="let tipoVinculacion of tipoVinculacions" [value]="tipoVinculacion.abbreviation">
+                {{ tipoVinculacion.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['tipoVinculacion'].hasError('required')">
+              Tipo de vinculacion es  <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!–- fin tipo de vinculación campo especial de seleccion -–>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <div mat-dialog-action align="center">
+        <button [disabled]="this.addressForm.invalid" mat-raised-button color="primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+        <button mat-raised-button color="primary" mat-dialog-close>Cancelar formulario</button>
+    </div>      
+    </mat-card-actions>
+  </mat-card>
+</form>

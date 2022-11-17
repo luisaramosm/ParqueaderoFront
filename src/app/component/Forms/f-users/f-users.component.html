@@ -1,0 +1,52 @@
+<form [formGroup]="usersForm" novalidate (ngSubmit)="getionarUsers()">
+    <mat-card class="users-card">
+      <mat-card-header>
+        <mat-card-title>Datos del propietario</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="usuario" formControlName="usuario">
+                <mat-error *ngIf="usersForm.controls['usuario'].hasError('required')">
+                  El usuario es  <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Contraseña" formControlName="password">
+                <mat-error *ngIf="usersForm.controls['password'].hasError('required')">
+                  El password es  <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Rol asignado" formControlName="rol">
+                  <mat-option *ngFor="let rol of rols" [value]="rol.abbreviation">
+                    {{ rol.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="usersForm.controls['rol'].hasError('required')">
+                  El rol es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <div mat-dialog-action align="center">
+          <button [disabled]="this.usersForm.invalid" mat-raised-button color="primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+          <button mat-raised-button color="primary" mat-dialog-close>Cancelar formulario</button>
+      </div>      
+      </mat-card-actions>
+    </mat-card>
+  </form>
+

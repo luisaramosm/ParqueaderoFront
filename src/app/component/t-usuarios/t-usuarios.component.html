@@ -1,0 +1,64 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+
+        <!-- idCedula Column -->
+        <ng-container matColumnDef="idCedula">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>idCedula</th>
+          <td mat-cell *matCellDef="let row">{{row.idCedula}}</td>
+        </ng-container>
+
+        <!-- nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>nombre</th>
+          <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+        </ng-container>
+
+        <!-- apellido Column -->
+        <ng-container matColumnDef="apellido">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>apellido</th>
+          <td mat-cell *matCellDef="let row">{{row.apellido}}</td>
+        </ng-container>
+
+        <!-- idHorario Column -->
+        <ng-container matColumnDef="idHorario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>idHorario</th>
+          <td mat-cell *matCellDef="let row">{{row.idHorario}}</td>
+        </ng-container>
+
+        <!-- idParqueadero Column -->
+        <ng-container matColumnDef="idParqueadero">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>idParqueadero</th>
+          <td mat-cell *matCellDef="let row">{{row.idParqueadero}}</td>
+        </ng-container>
+
+        <!-- idVinculacion Column -->
+        <ng-container matColumnDef="idVinculacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>idVinculacion</th>
+          <td mat-cell *matCellDef="let row">{{row.idVinculacion}}</td>
+        </ng-container>
+
+        <!-- telefonoUsuario Column -->
+        <ng-container matColumnDef="telefonoUsuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>telefonoUsuario</th>
+          <td mat-cell *matCellDef="let row">{{row.telefonoUsuario}}</td>
+        </ng-container>
+
+        <!-- correoUsuario Column -->
+        <ng-container matColumnDef="correoUsuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>correoUsuario</th>
+          <td mat-cell *matCellDef="let row">{{row.correoUsuario}}</td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page">
+  </mat-paginator>
+  
+</div>

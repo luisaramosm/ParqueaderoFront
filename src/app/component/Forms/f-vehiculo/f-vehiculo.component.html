@@ -1,0 +1,71 @@
+<form [formGroup]="vehiculoForm" novalidate (ngSubmit)="agregarVehiculo()">
+    <mat-card class="vehiculo-card">
+      <mat-card-header>
+        <mat-card-title>Datos del propietario</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Placa del vehiculo" formControlName="placa">
+                <mat-error *ngIf="vehiculoForm.controls['placa'].hasError('required')">
+                  La placa es  <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!–- Al frente de nombre apellidos -–>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="idPersonas verificar" formControlName="idPersonas">
+                <mat-error *ngIf="vehiculoForm.controls['idPersonas'].hasError('required')">
+                  Los idPersonas son  <strong>requeridos</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Marca del vehiculo" formControlName="marca">
+                <mat-error *ngIf="vehiculoForm.controls['marca'].hasError('required')">
+                  La marca es  <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Modelo del vehiculo" formControlName="modelo">
+                <mat-error *ngIf="vehiculoForm.controls['modelo'].hasError('required')">
+                  El modelo es  <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div> 
+
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Tipo de vehiculo" formControlName="tipo">
+                  <mat-option *ngFor="let tipo of tipos" [value]="tipo.abbreviation">
+                    {{ tipo.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="vehiculoForm.controls['tipo'].hasError('required')">
+                  Tipo de vehiculo <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <div mat-dialog-action align="center">
+            <button [disabled]="this.vehiculoForm.invalid" mat-raised-button color="primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            <button mat-raised-button color="primary" mat-dialog-close>Cancelar formulario</button>
+        </div>      
+        </mat-card-actions>
+      </mat-card>
+    </form>

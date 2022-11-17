@@ -1,0 +1,69 @@
+<form [formGroup]="parqueaderoForm" novalidate (ngSubmit)="guardarParqueadero()">
+    <mat-card class="parqueadero-card">
+      <mat-card-header>
+        <mat-card-title>Datos del parqueadero</mat-card-title>
+      </mat-card-header>
+  <mat-card-content> 
+        <div class="row">
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="sede" formControlName="sede">
+              <mat-error *ngIf="parqueaderoForm.controls['sede'].hasError('required')">
+                La sede es un campo  <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="horario parqueadero" formControlName="horario">
+                <mat-option *ngFor="let horario of horarios" [value]="horario.abbreviation">
+                  {{ horario.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="parqueaderoForm.controls['horario'].hasError('required')">
+                El horario es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+      <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width-field">
+              <input matInput placeholder="Capacidad de autos" formControlName="CapacidadAutos">
+              <mat-error *ngIf="parqueaderoForm.controls['CapacidadAutos'].hasError('required')">
+                La Capacidad de Autos es un campo  <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+           <div class="col">
+            <mat-form-field class="full-width-field">
+                <input matInput placeholder="Capacidad de motos" formControlName="CapacidadMotos">
+                <mat-error *ngIf="parqueaderoForm.controls['CapacidadMotos'].hasError('required')">
+                  La capacidad de motos es un campo  <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+
+        <div class="col">
+            <mat-form-field class="full-width-field">
+                <input matInput placeholder="Capacidad de bicicletas" formControlName="CapacidadBicicletas">
+                <mat-error *ngIf="parqueaderoForm.controls['CapacidadBicicletas'].hasError('required')">
+                  La Capacidad de bicicletas es un campo  <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div mat-dialog-action align="center">
+        <button [disabled]="this.parqueaderoForm.invalid" mat-raised-button color="primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+        <button mat-raised-button color="primary" mat-dialog-close>Cancelar formulario</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

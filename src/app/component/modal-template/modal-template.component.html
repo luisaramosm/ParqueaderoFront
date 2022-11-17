@@ -1,0 +1,36 @@
+
+<h1 mat-dialog-title>{{accion}} {{titulo}} </h1>
+<div mat-dialog-content>
+    <div *ngIf="titulo=='persona'">
+        <app-personas></app-personas>
+    </div>
+
+    <div *ngIf="titulo=='Vehiculoes'">
+        <app-f-vehiculo></app-f-vehiculo>        
+    </div>
+
+    <div *ngIf="titulo=='Users'">
+        <app-f-users></app-f-users>
+    </div>
+
+    <div *ngIf="titulo=='parqueadero'">
+        <app-f-parqueadero></app-f-parqueadero>
+    </div>
+
+    <div *ngIf="titulo=='controls'">
+        <app-f-control></app-f-control>
+    </div>
+
+    <div *ngIf="titulo=='login'">
+        <app-login></app-login>
+    </div>
+
+
+<!--
+    <div *ngIf="titulo=='persona'">    *****/tpersonas.component.ts (openDialog) 
+        <app-personas></app-personas>  *****/Forms\personas\personas.component.ts (selector: 'app-personas') 
+    </div>
+-->
+</div>
+
+

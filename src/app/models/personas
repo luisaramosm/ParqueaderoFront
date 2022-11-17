@@ -1,0 +1,10 @@
+export class personas{
+        idPersonas: number
+        cedula: number
+        nombres: string
+        apellidos: string
+        telefono: string
+        correo: string
+        tipoVinculacion: string
+        idUsers: number
+}

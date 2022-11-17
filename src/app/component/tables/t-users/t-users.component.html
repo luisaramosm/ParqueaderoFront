@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <mat-form-field appearance="standard">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios" #input>
+  </mat-form-field>
+
+  <!-- Id Columnas -->
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <div matColumnDef="{{disCol}}" *ngFor="let disCol of displayedColumns" >
+
+      <!-- Nombre Columnas -->
+
+      <div *ngIf="disCol!='Acciones'">
+        <th mat-header-cell *matHeaderCellDef >  {{disCol}}</th>
+        <td mat-cell *matCellDef="let element" > {{element[disCol]}}</td>
+      </div>
+
+      <div *ngIf="disCol=='Acciones'">
+        <th mat-header-cell *matHeaderCellDef> {{disCol}}</th>
+        <td mat-cell *matCellDef="let element"> 
+          <i (click)="editarUsers(element)" class="fa-solid fa-pen-to-square test-info"></i> &nbsp; &nbsp; &nbsp; &nbsp;
+          <i (click)="eliminarUsers(element.idUsers)" class="fa-sharp fa-solid fa-trash test-danger"></i> 
+        </td>
+      </div>
+    </div>
+
+        <!-- Llenado Filas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Si no hay datos -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+    </tr>
+
+  </table>
+
+  <!-- Pie de pagina de la tabla -->
+  <table cellpadding="10" border="0" bgcolor="#FFFFFF">
+    <tr>
+       <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+        <button mat-raised-button color="primary" (click)="openDialog()">
+        <i class="fa-solid fa-rectangle-list"></i> &nbsp; Agregar</button>
+       </font>
+      </td>
+       <td>
+        <mat-paginator [pageSizeOptions]="[10, 20, 30, 100]" aria-label="Select page of users"></mat-paginator>
+       </td>
+    </tr>
+  </table>
+</div>
+</div>

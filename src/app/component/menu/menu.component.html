@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar><i class="fa-solid fa-house"> &nbsp; &nbsp; {{Menu}} </i> </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="dashboard">Dashboard</a>
+      <a mat-list-item href="tcontrol"> <i class="fa-solid fa-flag-checkered"></i> &nbsp; Tabla Control</a>
+      <a mat-list-item href="tusers"> <i class="fa-solid fa-users"></i> &nbsp; Tabla Usuarios </a>
+      <a mat-list-item href="tpersonas"> <i class="fa-solid fa-user"></i> &nbsp; Tabla Personas</a>
+      <a mat-list-item href="tparqueadero"> <i class="fa-solid fa-square-parking"></i> &nbsp; Tabla Parqueadero </a>
+      <a mat-list-item href="tvehiculo"> <i class="fa-solid fa-car"></i> &nbsp; Tabla Vehiculo </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: #7e67c7;">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      
+      <span style="color: white;">Bienvenido {{rol}}</span>
+      <button style=" color: #ffffff; " mat-menu-item (click)="logout()">Cerrar Sesión</button> 
+      
+
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
